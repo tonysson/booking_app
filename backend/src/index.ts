@@ -4,9 +4,19 @@ import cookieParser from 'cookie-parser'
 import mongoose from 'mongoose';
 import userRoutes from './routes/users';
 import authRoutes from './routes/auth';
+import hotelRoutes from './routes/my-hotels';
+import { v2 as cloudinary } from 'cloudinary';
 
 import "dotenv/config";
 import path from 'path';
+
+
+// Cloudinary set up
+cloudinary.config({
+    cloud_name : process.env.CLOUDINARY_CLOUD_NAME,
+    api_key : process.env.CLOUDINARY_API_KEY,
+    api_secret : process.env.CLOUDINARY_API_SECRET
+})
 
 // CONNECT TO MONGODB
 mongoose.connect(process.env.CONNECTION_STRING as string).then(() => {
@@ -26,8 +36,15 @@ app.use(cors({
 
 app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
-app.use('/api/users', userRoutes)
+app.use('/api/users', userRoutes);
 app.use('/api/auth' , authRoutes);
+app.use('/api/my-hotels', hotelRoutes);
+
+
+app.get("*" , (_req : Request, res: Response) => {
+    res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'));
+})
+
 
 app.listen(7000, () => {
     console.log("listening on http://localhost:7000")

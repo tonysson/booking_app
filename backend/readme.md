@@ -8,6 +8,8 @@
         npm i cookie-parser
         npm i cross-env => we can create different environments
         npx tsc --init => generate tsconfig.json
+        npm i cloudinary
+        npm i multer
     # FRONTEND 
         npm create vite@latest
         npm install -D tailwindcss postcss autoprefixer

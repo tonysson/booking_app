@@ -1,4 +1,4 @@
-import mongoose, { mongo } from 'mongoose'
+import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 
 export type UserType = {
@@ -9,7 +9,7 @@ export type UserType = {
     lastName : string;
 }
 
-const userSchema  = new mongoose.Schema({
+const userSchema  = new mongoose.Schema<UserType>({
 
     email : {
         type : String,
