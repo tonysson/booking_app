@@ -16,6 +16,7 @@
         npx tailwindcss init -p: create  tailwind.config.js and postcss.config.js
         npm i react-hook-form
         npm i react-query
+        npm i react-icons
 
     # E2E TESTING : https://playwright.dev/docs/intro
         npm init playwright@latest
