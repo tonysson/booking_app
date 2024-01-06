@@ -17,6 +17,7 @@
         npm i react-hook-form
         npm i react-query
         npm i react-icons
+        npm i react-datepicker
 
     # E2E TESTING : https://playwright.dev/docs/intro
         npm init playwright@latest
