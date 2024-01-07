@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form"
 import { useMutation, useQueryClient } from "react-query"
 import * as apiClient from "../api-client";
 import { useAppContext } from "../contexts/AppContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export type SignInFormData = {
     email : string
@@ -12,6 +12,7 @@ export type SignInFormData = {
 export default function SignIn() {
 
     const navigate = useNavigate()
+    const location = useLocation()
     const {showToast} = useAppContext()
     const queryClient = useQueryClient()
 
@@ -24,7 +25,8 @@ export default function SignIn() {
                 type: "SUCCESS"
             });
             await queryClient.invalidateQueries("validateToken")
-            navigate("/")
+            // location.state?.from?.pathname meeans if we sign in from a location (ex : detail page) we will be redirect to this page or we will be redirect to "/" home page
+            navigate(location.state?.from?.pathname || "/")
         },
         onError :  (error : Error) => {
             showToast({

@@ -35,24 +35,49 @@ export default function Search() {
 
     const {data :hotelData} = useQuery(['searchHotels', searchParams], () => apiClient.searchHotels(searchParams))
 
-    const handleStarsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    // Generic function to handle all the checkBox changes
+    const handleCheckboxChange = (
+      e: React.ChangeEvent<HTMLInputElement>,
+      stateSetter: React.Dispatch<React.SetStateAction<string[]>>
+    ) => {
       e.preventDefault();
-      const starsRating = e.target.value;
-      setSelectedStars((prevStars) => e.target.checked ? [...prevStars , starsRating] : prevStars.filter(star => star !== starsRating))
-   }
+      const checkedValue = e.target.value;
+      stateSetter((prevState) =>
+        e.target.checked ? [...prevState, checkedValue] : prevState.filter((item) => item !== checkedValue)
+      );
+    };
 
-   const handleHotelTypesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const hotelTypes = e.target.value;
-    setSelectedHotelTypes((prevHotelType) => e.target.checked ? [...prevHotelType , hotelTypes] : prevHotelType.filter(type => type !== hotelTypes))
-  }
+    const handleStarsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      handleCheckboxChange(e, setSelectedStars);
+    };
+    
+    const handleHotelTypesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      handleCheckboxChange(e, setSelectedHotelTypes);
+    };
+    
+    const handleFacilitiesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      handleCheckboxChange(e, setSelectedFacilities);
+    };
+
+//     const handleStarsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//       e.preventDefault();
+//       const starsRating = e.target.value;
+//       setSelectedStars((prevStars) => e.target.checked ? [...prevStars , starsRating] : prevStars.filter(star => star !== starsRating))
+//    }
+
+//    const handleHotelTypesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     e.preventDefault();
+//     const hotelTypes = e.target.value;
+//     setSelectedHotelTypes((prevHotelType) => e.target.checked ? [...prevHotelType , hotelTypes] : prevHotelType.filter(type => type !== hotelTypes))
+//   }
 
 
-  const handleFacilitiesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const facilities = e.target.value;
-    setSelectedFacilities((prevfacilities) => e.target.checked ? [...prevfacilities , facilities] : prevfacilities.filter(facility => facility !== facilities))
- }
+//   const handleFacilitiesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     e.preventDefault();
+//     const facilities = e.target.value;
+//     setSelectedFacilities((prevfacilities) => e.target.checked ? [...prevfacilities , facilities] : prevfacilities.filter(facility => facility !== facilities))
+//  }
 
 
   return (

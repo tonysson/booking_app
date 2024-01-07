@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import path from 'path';
 
 const UI_URL = 'http://localhost:5173/'
 
@@ -23,4 +22,13 @@ test("Should show hotel search results", async ({page}) => {
     await expect(page.getByText("Hotels found in Togoville")).toBeVisible();
     await expect(page.getByText("Hotel Nachtigal")).toBeVisible();
 
+})
+
+test("Should show hotel details", async ({page}) => {
+    await page.goto(UI_URL);
+    await page.getByPlaceholder("Where are you going?").fill("Togoville");
+    await page.getByRole("button", {name : "Search"}).click();
+    await page.getByText("Hotel Nachtigal").click()
+    await expect(page).toHaveURL(/detail/);
+    await expect(page.getByRole("button", {name : "Book now"})).toBeVisible()
 })
