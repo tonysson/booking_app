@@ -10,6 +10,7 @@
         npx tsc --init => generate tsconfig.json
         npm i cloudinary
         npm i multer
+        npm i stripe
     # FRONTEND 
         npm create vite@latest
         npm install -D tailwindcss postcss autoprefixer
@@ -18,6 +19,7 @@
         npm i react-query
         npm i react-icons
         npm i react-datepicker
+        npm i --save @stripe/react-stripe-js @stripe/stripe-js
 
     # E2E TESTING : https://playwright.dev/docs/intro
         npm init playwright@latest

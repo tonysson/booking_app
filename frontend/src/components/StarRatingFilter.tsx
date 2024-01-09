@@ -13,7 +13,7 @@ export default function StarRatingFilter({selectedStars , onChange} : Props) {
       </h4>
       {
         ["5", "4" , "3" , "2" , "1"].map(star => (
-            <label className="flex items-center space-x-2">
+            <label key={Math.random()} className="flex items-center space-x-2">
                 <input 
                 type="checkbox" className="rounded" value={star} checked={ selectedStars.includes(star)} onChange={onChange} />
                 <span>{star} Stars</span>

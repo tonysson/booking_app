@@ -14,7 +14,7 @@ export default function FacilitiesFilter({selectedFacilities , onChange} : Props
       </h4>
       {
         hotelFacilities.map(hotelfacility => (
-            <label className="flex items-center space-x-2">
+            <label key={Math.random()} className="flex items-center space-x-2">
                 <input 
                 type="checkbox" className="rounded" value={hotelfacility} checked={ selectedFacilities.includes(hotelfacility)} onChange={onChange} />
                 <span>{hotelfacility}</span>
