@@ -10,6 +10,8 @@ import EditHotel from './pages/EditHotel'
 import Search from './pages/Search'
 import Details from './pages/Details'
 import Booking from './pages/Booking'
+import MyBookings from './pages/MyBookings'
+import Home from './pages/Home'
 
 export default function App() {
 
@@ -19,7 +21,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout>
-           <p className="">Home page</p>
+          <Home/>
         </Layout>} />
         <Route 
          path='/search' 
@@ -61,6 +63,12 @@ export default function App() {
              <Route path='/my-hotels' element={
               <Layout>
                 <MyHotels/>
+              </Layout>
+            } />
+
+              <Route path='/my-bookings' element={
+              <Layout>
+                <MyBookings/>
               </Layout>
             } />
           </>
